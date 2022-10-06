@@ -25,7 +25,7 @@ public class VeiculoController {
 		veiculos.add(new Veiculo(1L, "Volvo", "XC60"));
 		veiculos.add(new Veiculo(2L, "Chevrolet", "Celta"));
 		veiculos.add(new Veiculo(3L, "Fiat", "Uno"));
-		veiculos.add(new Veiculo(3L, "Ford", "Fiesta"));
+		veiculos.add(new Veiculo(4L, "Ford", "Fiesta"));
 	}
 
 	@GetMapping
@@ -47,7 +47,7 @@ public class VeiculoController {
 	// FAZER UM POST
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Veiculo inserir(@RequestBody Veiculo veiculo) {
+	public Veiculo inserir(@RequestBody Veiculo veiculo) {// @RequestBody QUANDO FOR PASSAR UM OBJETO
 		veiculos.add(veiculo);
 		return veiculo;
 	}
