@@ -16,8 +16,6 @@ public class Caracteristica {
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 
-	private String cor;
-
 	@Enumerated(EnumType.ORDINAL)
 	private Combustivel combustivel;
 
@@ -51,14 +49,6 @@ public class Caracteristica {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
 	}
 
 	public Combustivel getCombustivel() {

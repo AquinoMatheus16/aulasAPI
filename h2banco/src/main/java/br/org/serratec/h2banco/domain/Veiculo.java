@@ -33,6 +33,7 @@ public class Veiculo {
 	private String modelo;
 
 	@Embedded
+	@Size(min = 1,message = "Preencha corretamente")
 	private Caracteristica caracteristica;
 
 	public Long getId() {
