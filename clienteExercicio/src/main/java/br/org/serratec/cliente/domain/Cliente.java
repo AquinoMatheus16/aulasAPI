@@ -1,7 +1,6 @@
 package br.org.serratec.cliente.domain;
 
-
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,12 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
@@ -26,11 +26,15 @@ public class Cliente {
 	private String cpf;
 	@Column(name = "email", nullable = false, length = 50)
 	private String email;
-	@Column(name = "data_nascimento")
-	@Temporal(TemporalType.DATE)
-	private Date dataNascimento;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "data_nascimento") // OUTRA FORMA DE FAZER SEM USAR O @Temporal(TemporalType.DATE)
+	private LocalDate dataNascimento;
 
-	public Cliente(Long id, String nome, String cpf, String email, Date dataNascimento) {
+//	@Column(name = "data_nascimento")
+//	@Temporal(TemporalType.DATE)
+//	private Date dataNascimento; //	@JsonFormat(pattern = "dd/MM/yyyy") FORMATACAO DA DATA
+
+	public Cliente(Long id, String nome, String cpf, String email, LocalDate dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -75,11 +79,11 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

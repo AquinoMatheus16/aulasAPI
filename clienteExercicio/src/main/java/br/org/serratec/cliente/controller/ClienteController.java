@@ -22,16 +22,17 @@ import br.org.serratec.cliente.repository.ClienteRepository;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
+
 	@Autowired
 	private ClienteRepository clienteRepository;
 
 	@GetMapping
-	public List<Cliente> listar() {
+	public List<Cliente> listarCliente() {
 		return clienteRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> pesquisar(@PathVariable Long id) {
+	public ResponseEntity<Cliente> pesquisarId(@PathVariable Long id) {
 		Optional<Cliente> clienteId = clienteRepository.findById(id);
 		if (clienteId.isPresent()) {
 			return ResponseEntity.ok(clienteId.get());
@@ -51,12 +52,12 @@ public class ClienteController {
 		if (!clienteOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
-		Cliente clienteDB = clienteOptional.get();
-		clienteDB.setNome(cliente.getNome());
-		clienteDB.setCpf(cliente.getCpf());
-		clienteDB.setEmail(cliente.getEmail());
-		clienteDB.setDataNascimento(cliente.getDataNascimento());
-		cliente = clienteRepository.save(clienteDB);
+		Cliente clienteBanco = clienteOptional.get();
+		clienteBanco.setNome(cliente.getNome());
+		clienteBanco.setCpf(cliente.getCpf());
+		clienteBanco.setEmail(cliente.getEmail());
+		clienteBanco.setDataNascimento(cliente.getDataNascimento());
+		cliente = clienteRepository.save(clienteBanco);
 		return ResponseEntity.ok(cliente);
 	}
 
