@@ -1,11 +1,17 @@
 package br.org.serratec.h2banco.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -33,8 +39,30 @@ public class Veiculo {
 	private String modelo;
 
 	@Embedded
-	@Size(min = 1,message = "Preencha corretamente")
 	private Caracteristica caracteristica;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_proprietario")
+	private Proprietario proprietario;
+
+	public Proprietario getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
+	}
+
+	public List<Manutencao> getManutencoes() {
+		return manutencoes;
+	}
+
+	public void setManutencoes(List<Manutencao> manutencoes) {
+		this.manutencoes = manutencoes;
+	}
+
+	@OneToMany(mappedBy = "veiculo")
+	private List<Manutencao> manutencoes;
 
 	public Long getId() {
 		return id;

@@ -10,7 +10,7 @@ public class PessoaFisica extends Fornecedor {
 	@Column
 	private String orgaoEmisso;
 	@Column
-	String cpf;
+	private String cpf;
 
 	public String getRg() {
 		return rg;
