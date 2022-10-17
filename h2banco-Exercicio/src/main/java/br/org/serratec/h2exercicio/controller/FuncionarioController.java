@@ -48,21 +48,6 @@ public class FuncionarioController {
 		return funcionarioRepository.save(funcionario);
 	}
 
-//	@PutMapping("/{id}")
-//	public ResponseEntity<Funcionario> atualizar(@Valid @RequestBody Funcionario funcionario, @PathVariable Long id) {
-//		Optional<Funcionario> funcionarioOptional = clienteRepository.findById(id);
-//		if (!funcionarioOptional.isPresent()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		Funcionario clienteBanco = funcionarioOptional.get();
-//		clienteBanco.setNome(funcionario.getNome());
-//		clienteBanco.setCpf(funcionario.getCpf());
-//		clienteBanco.setSalario(funcionario.getSalario());
-//		clienteBanco.setTurno(funcionario.getTurno());
-//		funcionario = funcionarioRepository.save(clienteBanco);
-//		return ResponseEntity.ok(funcionario);
-//	}
-
 	@PutMapping("/{id}")
 	public ResponseEntity<Funcionario> alterar(@PathVariable Long id, @Valid @RequestBody Funcionario funcionario) {
 

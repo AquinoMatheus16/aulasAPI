@@ -26,8 +26,20 @@
 					"postgresql.dd.plain.string": "false",
 					"postgresql.dd.tag.string": "false"
 				},
-				"auth-model": "native",
-				"handlers": {}
+				"auth-model": "native"
+			}
+		}
+	},
+	"virtual-models": {
+		"postgres-jdbc-183aa803202-2ca602177cca7ded": {
+			"livro2": {
+				"public": {
+					"@properties": {
+						"erd.diagram.state": {
+							"serialized": "<diagram version=\"1\" name=\"empty\" time=\"202210171038\"><entities><data-source id=\"postgres-jdbc-183aa803202-2ca602177cca7ded\"><entity id=\"1\" name=\"associado\" fq-name=\"public.associado\" order=\"0\" x=\"890\" y=\"46\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"2\" name=\"autor\" fq-name=\"public.autor\" order=\"1\" x=\"250\" y=\"392\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"3\" name=\"categoria\" fq-name=\"public.categoria\" order=\"2\" x=\"10\" y=\"150\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"4\" name=\"emprestimo\" fq-name=\"public.emprestimo\" order=\"3\" x=\"661\" y=\"85\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"5\" name=\"emprestimo_livro\" fq-name=\"public.emprestimo_livro\" order=\"4\" x=\"382\" y=\"57\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"6\" name=\"flyway_schema_history\" fq-name=\"public.flyway_schema_history\" order=\"5\" x=\"20\" y=\"496\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"7\" name=\"livro\" fq-name=\"public.livro\" order=\"6\" x=\"185\" y=\"34\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"8\" name=\"livro_autor\" fq-name=\"public.livro_autor\" order=\"7\" x=\"213\" y=\"240\"><path name=\"public\"/><path name=\"livro2\"/></entity><entity id=\"9\" name=\"livro_categoria\" fq-name=\"public.livro_categoria\" order=\"8\" x=\"2\" y=\"58\"><path name=\"public\"/><path name=\"livro2\"/></entity></data-source></entities><relations><relation name=\"emprestimo_associado_fkey\" fq-name=\"public.emprestimo.emprestimo_associado_fkey\" type=\"fk\" pk-ref=\"1\" fk-ref=\"4\"/><relation name=\"livro_autor_id_autor_fkey\" fq-name=\"public.livro_autor.livro_autor_id_autor_fkey\" type=\"fk\" pk-ref=\"2\" fk-ref=\"8\"/><relation name=\"livro_categoria_fkey\" fq-name=\"public.livro.livro_categoria_fkey\" type=\"fk\" pk-ref=\"3\" fk-ref=\"7\"/><relation name=\"livro_categoria_id_categoria_fkey\" fq-name=\"public.livro_categoria.livro_categoria_id_categoria_fkey\" type=\"fk\" pk-ref=\"3\" fk-ref=\"9\"/><relation name=\"emprestimo_livro_id_emprestimo_fkey\" fq-name=\"public.emprestimo_livro.emprestimo_livro_id_emprestimo_fkey\" type=\"fk\" pk-ref=\"4\" fk-ref=\"5\"/><relation name=\"emprestimo_livro_id_livro_fkey\" fq-name=\"public.emprestimo_livro.emprestimo_livro_id_livro_fkey\" type=\"fk\" pk-ref=\"7\" fk-ref=\"5\"/><relation name=\"livro_autor_id_livro_fkey\" fq-name=\"public.livro_autor.livro_autor_id_livro_fkey\" type=\"fk\" pk-ref=\"7\" fk-ref=\"8\"/><relation name=\"livro_categoria_id_livro_fkey\" fq-name=\"public.livro_categoria.livro_categoria_id_livro_fkey\" type=\"fk\" pk-ref=\"7\" fk-ref=\"9\"/></relations></diagram>"
+						}
+					}
+				}
 			}
 		}
 	},

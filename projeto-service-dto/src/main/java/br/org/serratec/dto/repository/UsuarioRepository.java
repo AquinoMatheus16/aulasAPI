@@ -7,6 +7,5 @@ import br.org.serratec.dto.domain.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
 	Usuario findByEmail(String email);
 }

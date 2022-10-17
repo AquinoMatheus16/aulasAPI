@@ -1,11 +1,29 @@
 package br.org.serratec.dto.dto;
 
+import java.util.Set;
+
+import br.org.serratec.dto.domain.Perfil;
+
 public class UsuarioInserirDTO {
 
 	private String nome;
 	private String email;
 	private String senha;
 	private String confirmaSenha;
+	private Set<Perfil> perfis;
+
+	public UsuarioInserirDTO(String nome, String email, String senha, String confirmaSenha, Set<Perfil> perfis) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.confirmaSenha = confirmaSenha;
+		this.perfis = perfis;
+	}
+
+	public UsuarioInserirDTO() {
+		super();
+	}
 
 	public String getNome() {
 		return nome;
@@ -37,6 +55,14 @@ public class UsuarioInserirDTO {
 
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
+	}
+
+	public Set<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(Set<Perfil> perfis) {
+		this.perfis = perfis;
 	}
 
 }

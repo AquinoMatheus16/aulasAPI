@@ -49,7 +49,6 @@ public class ProprietarioController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Proprietario> alterar(@PathVariable Long id, @Valid @RequestBody Proprietario veiculo) {
-
 		if (!veiculoRepository.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}

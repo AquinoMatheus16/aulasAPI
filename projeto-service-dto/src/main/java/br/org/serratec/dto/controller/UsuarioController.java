@@ -21,11 +21,11 @@ import br.org.serratec.dto.service.UsuarioService;
 public class UsuarioController {
 
 	@Autowired
-	UsuarioService usuarioService;
+	private UsuarioService usuarioService;
 
 	@GetMapping
 	public ResponseEntity<List<UsuarioDTO>> listar() {
-		return ResponseEntity.ok(usuarioService.findAll());
+		return ResponseEntity.ok(usuarioService.lista());
 	}
 
 	@PostMapping
