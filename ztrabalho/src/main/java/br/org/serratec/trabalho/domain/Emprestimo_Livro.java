@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "emprestimo_livro")
 public class Emprestimo_Livro {
 
 	@Id
@@ -16,27 +19,12 @@ public class Emprestimo_Livro {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_emprestimo")
-	private Emprestimo emprestimo;
-
-	@ManyToOne
+	@NotNull
 	@JoinColumn(name = "id_livro")
 	private Livro livro;
 
 	@Column(length = 200, nullable = false)
 	private String observacoesAtoEmprestimo;
-
-	public Emprestimo_Livro(Long id, Emprestimo emprestimo, Livro livro, String observacoesAtoEmprestimo) {
-		super();
-		this.id = id;
-		this.emprestimo = emprestimo;
-		this.livro = livro;
-		this.observacoesAtoEmprestimo = observacoesAtoEmprestimo;
-	}
-
-	public Emprestimo_Livro() {
-		super();
-	}
 
 	public Long getId() {
 		return id;
@@ -44,14 +32,6 @@ public class Emprestimo_Livro {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Emprestimo getEmprestimo() {
-		return emprestimo;
-	}
-
-	public void setEmprestimo(Emprestimo emprestimo) {
-		this.emprestimo = emprestimo;
 	}
 
 	public Livro getLivro() {

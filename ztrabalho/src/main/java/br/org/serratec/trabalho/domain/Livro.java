@@ -1,14 +1,17 @@
 package br.org.serratec.trabalho.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,7 +25,6 @@ public class Livro {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "id_livro")
 	private Long id;
 
 	@Column // (name = "titulo")
@@ -30,9 +32,10 @@ public class Livro {
 	@ApiModelProperty(value = "Título do livro")
 	private String titulo;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinTable(name = "categoria")
-	@JoinColumn(name = "categoria")
+//	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@NotNull
+	@JoinColumn(name = "categoria") // id_categoria
 	@ApiModelProperty(value = "Categoria do livro")
 	private Categoria categoria;
 
@@ -47,12 +50,24 @@ public class Livro {
 	@ApiModelProperty(value = "Data de publicação do livro")
 	private LocalDate dataPublicacao;
 
+	@ManyToMany
+	@JoinTable(name = "livro_autor", joinColumns = @JoinColumn(name = "id_livro"), inverseJoinColumns = @JoinColumn(name = "id_autor"))
+	private List<Autor> autores;
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public Categoria getCategoria() {
@@ -79,12 +94,12 @@ public class Livro {
 		this.dataPublicacao = dataPublicacao;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public List<Autor> getAutores() {
+		return autores;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
 	}
 
 }

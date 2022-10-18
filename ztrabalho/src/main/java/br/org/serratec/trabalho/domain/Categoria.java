@@ -5,19 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "categoria")
 public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "id_categoria")
 	private Long id;
 
-	@Column(name = "nome")
+	@NotBlank
+	@Column(name = "nome", nullable = false, length = 20)
 	private String nome;
 
-	@Column(name = "descricao")
+	@Column(name = "descricao", length = 200)
 	private String descricao;
 
 	public Long getId() {

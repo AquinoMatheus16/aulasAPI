@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/livros")
+@RequestMapping("/api/livros")
 public class LivroController {
 
 	@Autowired
@@ -43,8 +43,8 @@ public class LivroController {
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Retorna um livros", notes = "Livro")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna um livros"),
+	@ApiOperation(value = "Retorna um livro", notes = "Livro")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna um livro"),
 			@ApiResponse(code = 401, message = "Erro de autenticação"),
 			@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
 			@ApiResponse(code = 404, message = "Recurso não encontrado"),
@@ -104,5 +104,11 @@ public class LivroController {
 		livroRepository.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
+
+//	@GetMapping("/pagina")
+//	public ResponseEntity<Page<Livro>> listar(Pageable pageable){
+//	Page<Livro> livros = livroRepository.findAll(pageable);
+//	return ResponseEntity.ok(livros);
+//	}
 
 }

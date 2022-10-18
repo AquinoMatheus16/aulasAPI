@@ -22,10 +22,10 @@ public class Livro_autor {
 	@ManyToOne
 	@JoinColumn(name = "id_autor")
 	private Autor autor;
-	
+
 //	@ManyToMany
 //	@JoinTable(name = "livro_autor", joinColumns = @JoinColumn(name = "id_autor"), inverseJoinColumns = @JoinColumn(name = "id_livro"))
-	
+
 //	@ManyToMany
 //	@JoinTable(name = "livro_autor", joinColumns = @JoinColumn(name = "id_livro"), inverseJoinColumns = @JoinColumn(name = "id_autor"))
 
@@ -53,6 +53,14 @@ public class Livro_autor {
 
 	public void setAutor(Autor autor) {
 		this.autor = autor;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

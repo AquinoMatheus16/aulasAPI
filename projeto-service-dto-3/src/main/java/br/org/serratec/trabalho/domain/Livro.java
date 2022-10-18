@@ -8,29 +8,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Livro {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_livro")
+//	@Column(name = "id_livro")
 	private Long id;
 
+	@Column // (name = "titulo")
+	@NotBlank(message = "título deve ser preenchido")
+	private String titulo;
+
 	@ManyToOne
-	@JoinTable(name = "categoria")
-//	@JoinColumn(name = "id_categoria")
+//	@JoinTable(name = "categoria")
+	@JoinColumn(name = "categoria")
 	private Categoria categoria;
 
-	@Column(name = "isbn")
+	@Column // (name = "isbn")
 	@NotBlank(message = "Isbn deve ser preenchido")
 	private String isbn;
 
 	@Column(name = "data_publicacao")
-	@NotBlank(message = "dataPublicacao deve ser preenchido")
+	@NotNull(message = "dataPublicacao deve ser preenchido")
 	private LocalDate dataPublicacao;
 
 	public Long getId() {
@@ -63,6 +67,14 @@ public class Livro {
 
 	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 }
