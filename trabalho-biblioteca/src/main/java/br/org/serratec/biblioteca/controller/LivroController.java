@@ -7,6 +7,10 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,13 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.org.serratec.biblioteca.domain.Livro;
+import br.org.serratec.biblioteca.dto.LivroCategoriaDTO;
 import br.org.serratec.biblioteca.repository.LivroRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/api/livro")
+@RequestMapping("/api/biblioteca")
 public class LivroController {
 
 	@Autowired
@@ -109,6 +114,30 @@ public class LivroController {
 		}
 		livroRepository.deleteById(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping("/isbn")
+	@ApiOperation(value = "Listar livros por ISBN", notes = "Listar Livros")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Livros listado"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+			@ApiResponse(code = 404, message = "Recurso não encontrado"),
+			@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
+	public ResponseEntity<Page<Livro>> listar(
+			@PageableDefault(sort = "isbn", direction = Sort.Direction.ASC) Pageable pageable) {
+		Page<Livro> livros = livroRepository.findAll(pageable);
+		return ResponseEntity.ok(livros);
+	}
+
+	@GetMapping("/livro-e-categoria")
+	@ApiOperation(value = "Listar nome do livro e da categoria", notes = "Listar Livros")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Livros listado"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+			@ApiResponse(code = 404, message = "Recurso não encontrado"),
+			@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
+	public ResponseEntity<List<LivroCategoriaDTO>> buscaSalariosPorIdade() {
+		return ResponseEntity.ok(livroRepository.buscaTituloCategoria());
 	}
 
 }
