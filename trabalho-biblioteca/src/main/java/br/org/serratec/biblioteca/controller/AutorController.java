@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.biblioteca.domain.Autor;
+import br.org.serratec.biblioteca.dto.LivroPorAutorDTO;
 import br.org.serratec.biblioteca.repository.AutorRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -100,5 +101,16 @@ public class AutorController {
 		}
 		autorRepository.deleteById(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping("/listar-total-livros")
+	@ApiOperation(value = "Listar total de livros por autor", notes = "Listar Livros")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Livros listado"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+			@ApiResponse(code = 404, message = "Recurso não encontrado"),
+			@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
+	public ResponseEntity<List<LivroPorAutorDTO>> buscaLivroQtdAutor() {
+		return ResponseEntity.ok(autorRepository.buscaLivroPorAutor());
 	}
 }

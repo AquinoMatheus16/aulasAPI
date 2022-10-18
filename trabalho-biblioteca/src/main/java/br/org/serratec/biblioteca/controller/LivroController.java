@@ -136,7 +136,7 @@ public class LivroController {
 			@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
 			@ApiResponse(code = 404, message = "Recurso não encontrado"),
 			@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
-	public ResponseEntity<List<LivroCategoriaDTO>> buscaSalariosPorIdade() {
+	public ResponseEntity<List<LivroCategoriaDTO>> buscaLivroCategoria() {
 		return ResponseEntity.ok(livroRepository.buscaTituloCategoria());
 	}
 
