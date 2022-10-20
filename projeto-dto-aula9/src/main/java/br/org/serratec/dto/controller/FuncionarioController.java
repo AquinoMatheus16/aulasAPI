@@ -31,7 +31,7 @@ public class FuncionarioController {
 	}
 
 	@GetMapping("/pagina")
-	public ResponseEntity<Page<Funcionario>> listar(
+	public ResponseEntity<Page<Funcionario>> listarPagina(
 			@PageableDefault(sort = "nome", direction = Sort.Direction.ASC, page = 3, size = 8) Pageable pageable) {
 		Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
 		return ResponseEntity.ok(funcionarios);
