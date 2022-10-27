@@ -25,9 +25,9 @@ public class Categoria {
 	@Column(nullable = false, length = 30, unique = true)
 	private String nome;
 
-	@Size(min = 3, max = 200, message = "Nome da categoria deve ser entre {min} e {max} caracteres")
+	@Size(min = 3, max = 200, message = "Descrição deve ser entre {min} e {max} caracteres")
 	@Column(length = 200)
-	private String categoria;
+	private String descricao;
 
 	public Long getId() {
 		return id;
@@ -46,11 +46,11 @@ public class Categoria {
 	}
 
 	public String getCategoria() {
-		return categoria;
+		return descricao;
 	}
 
 	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+		this.descricao = categoria;
 	}
 
 	@Override
